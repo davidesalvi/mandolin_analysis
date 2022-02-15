@@ -5,9 +5,9 @@ import seaborn as sns
 import os
 from matplotlib.patches import Patch
 
-# make plots using LaTeX font
-import matplotlib as mpl
-mpl.rcParams['text.usetex'] = True
+# # make plots using LaTeX font
+# import matplotlib as mpl
+# mpl.rcParams['text.usetex'] = True
 
 def prepare_data(csv_path, std_min=None):
 
@@ -131,10 +131,14 @@ def plot_single_instrument_boxplot(data, start, end, title, save_name):
 
     font_size = 12
 
+    # labels_top = [r'$\mathrm{Dull}$',r'$\mathrm{Cold}$',r'$\mathrm{Opaque}$',r'$\mathrm{Sharp}$',
+    #               r'$\mathrm{Homog.}$',r'$\mathrm{Closed}$',r'$\mathrm{Sustain}$']
+    # labels_bottom = [r'$\mathrm{Clear}$',r'$\mathrm{Warm}$',r'$\mathrm{Brilliant}$',r'$\mathrm{Round}$',
+    #                  r'$\mathrm{Ringing}$',r'$\mathrm{Open}$',r'$\mathrm{Sustain}$']
     labels_top = [r'$\mathrm{Dull}$',r'$\mathrm{Cold}$',r'$\mathrm{Opaque}$',r'$\mathrm{Sharp}$',
-                  r'$\mathrm{Homog.}$',r'$\mathrm{Closed}$',r'$\mathrm{Sustain}$']
+                  r'$\mathrm{Homog.}$',r'$\mathrm{Closed}$']
     labels_bottom = [r'$\mathrm{Clear}$',r'$\mathrm{Warm}$',r'$\mathrm{Brilliant}$',r'$\mathrm{Round}$',
-                     r'$\mathrm{Ringing}$',r'$\mathrm{Open}$',r'$\mathrm{Sustain}$']
+                     r'$\mathrm{Ringing}$',r'$\mathrm{Open}$']
     labels_comparison = [r'$\mathrm{WWDF2}$',r'$\mathrm{WWDF1}$',r'$\mathrm{WWDF3}$',r'$\mathrm{CA-STD}$',
                      r'$\mathrm{Pandini}$']
 
@@ -164,10 +168,14 @@ def plot_single_instrument_errorbar(data, start, end, title, save_name):
 
     font_size = 12
 
+    # labels_top = [r'$\mathrm{Dull}$',r'$\mathrm{Cold}$',r'$\mathrm{Opaque}$',r'$\mathrm{Sharp}$',
+    #               r'$\mathrm{Homog.}$',r'$\mathrm{Closed}$',r'$\mathrm{Sustain}$']
+    # labels_bottom = [r'$\mathrm{Clear}$',r'$\mathrm{Warm}$',r'$\mathrm{Brilliant}$',r'$\mathrm{Round}$',
+    #                  r'$\mathrm{Ringing}$',r'$\mathrm{Open}$',r'$\mathrm{Sustain}$']
     labels_top = [r'$\mathrm{Dull}$',r'$\mathrm{Cold}$',r'$\mathrm{Opaque}$',r'$\mathrm{Sharp}$',
-                  r'$\mathrm{Homog.}$',r'$\mathrm{Closed}$',r'$\mathrm{Sustain}$']
+                  r'$\mathrm{Homog.}$',r'$\mathrm{Closed}$']
     labels_bottom = [r'$\mathrm{Clear}$',r'$\mathrm{Warm}$',r'$\mathrm{Brilliant}$',r'$\mathrm{Round}$',
-                     r'$\mathrm{Ringing}$',r'$\mathrm{Open}$',r'$\mathrm{Sustain}$']
+                     r'$\mathrm{Ringing}$',r'$\mathrm{Open}$']
     labels_comparison = [r'$\mathrm{WWDF2}$',r'$\mathrm{WWDF1}$',r'$\mathrm{WWDF3}$',r'$\mathrm{CA-STD}$',
                      r'$\mathrm{Pandini}$']
 
@@ -214,19 +222,143 @@ def plot_single_instrument_errorbar(data, start, end, title, save_name):
 def single_analysis(data):
 
 
-    plot_single_instrument_boxplot(data, 4, 11, 'Mandolin 1 - WWDF2', 'wwdf2')
-    plot_single_instrument_boxplot(data, 12, 19, 'Mandolin 2 - WWDF1', 'wwdf1')
-    plot_single_instrument_boxplot(data, 20, 27, 'Mandolin 3 - WWDF3', 'wwdf3')
-    plot_single_instrument_boxplot(data, 28, 35, 'Mandolin 4 - CA-STD', 'castd')
-    plot_single_instrument_boxplot(data, 36, 43, 'Mandolin 5 - Pandini', 'pandini')
+    plot_single_instrument_boxplot(data, 4, 10, 'Mandolin 1 - WWDF2', 'wwdf2')
+    plot_single_instrument_boxplot(data, 12, 18, 'Mandolin 2 - WWDF1', 'wwdf1')
+    plot_single_instrument_boxplot(data, 20, 26, 'Mandolin 3 - WWDF3', 'wwdf3')
+    plot_single_instrument_boxplot(data, 28, 34, 'Mandolin 4 - CA-STD', 'castd')
+    plot_single_instrument_boxplot(data, 36, 42, 'Mandolin 5 - Pandini', 'pandini')
     plot_single_instrument_boxplot(data, [11, 19, 27, 35, 43], None, 'Overall Comparison', 'overall_comp')
 
-    plot_single_instrument_errorbar(data, 4, 11, 'Mandolin 1 - WWDF2', 'wwdf2')
-    plot_single_instrument_errorbar(data, 12, 19, 'Mandolin 2 - WWDF1', 'wwdf1')
-    plot_single_instrument_errorbar(data, 20, 27, 'Mandolin 3 - WWDF3', 'wwdf3')
-    plot_single_instrument_errorbar(data, 28, 35, 'Mandolin 4 - CA-STD', 'castd')
-    plot_single_instrument_errorbar(data, 36, 43, 'Mandolin 5 - Pandini', 'pandini')
-    plot_single_instrument_errorbar(data, [11, 19, 27, 35, 43], None, 'Overall Comparison', 'overall_comp')
+    # plot_single_instrument_errorbar(data, 4, 11, 'Mandolin 1 - WWDF2', 'wwdf2')
+    # plot_single_instrument_errorbar(data, 12, 19, 'Mandolin 2 - WWDF1', 'wwdf1')
+    # plot_single_instrument_errorbar(data, 20, 27, 'Mandolin 3 - WWDF3', 'wwdf3')
+    # plot_single_instrument_errorbar(data, 28, 35, 'Mandolin 4 - CA-STD', 'castd')
+    # plot_single_instrument_errorbar(data, 36, 43, 'Mandolin 5 - Pandini', 'pandini')
+    # plot_single_instrument_errorbar(data, [11, 19, 27, 35, 43], None, 'Overall Comparison', 'overall_comp')
+
+
+def instrument_fingerprint(data):
+
+    mand1 = np.mean(data.iloc[:, 4:10], axis=0).to_list()
+    mand2 = np.mean(data.iloc[:, 12:18], axis=0).to_list()
+    mand3 = np.mean(data.iloc[:, 20:26], axis=0).to_list()
+    mand4 = np.mean(data.iloc[:, 28:34], axis=0).to_list()
+    mand5 = np.mean(data.iloc[:, 36:42], axis=0).to_list()
+
+    mand1.append(mand1[0])
+    mand2.append(mand2[0])
+    mand3.append(mand3[0])
+    mand4.append(mand4[0])
+    mand5.append(mand5[0])
+
+    adjectives = ["Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"]
+
+    plt.figure(figsize=(10, 6))
+    plt.subplot(polar=True)
+
+    theta = np.linspace(0, 2 * np.pi, len(mand1))
+
+    lines, labels = plt.thetagrids(range(0, 360, int(360 / len(adjectives))), (adjectives))
+    plt.plot(theta, mand1)
+    # plt.fill(theta, actual, 'b', alpha=0.1)
+    plt.plot(theta, mand2)
+    plt.plot(theta, mand3)
+    plt.plot(theta, mand4)
+    plt.plot(theta, mand5)
+
+    plt.legend(labels=('Mand1', 'Mand2', 'Mand3', 'Mand4', 'Mand5'), loc=1)
+    # plt.title("")
+    plt.show()
+
+    # ===============================================
+
+    mand1 = np.mean(data.iloc[:, 4:10], axis=0).to_list()
+    mand2 = np.mean(data.iloc[:, 12:18], axis=0).to_list()
+    mand3 = np.mean(data.iloc[:, 20:26], axis=0).to_list()
+    mand4 = np.mean(data.iloc[:, 28:34], axis=0).to_list()
+    mand5 = np.mean(data.iloc[:, 36:42], axis=0).to_list()
+
+    adj0 = [mand1[0], mand2[0], mand3[0], mand4[0], mand5[0]]
+    adj1 = [mand1[1], mand2[1], mand3[1], mand4[1], mand5[1]]
+    adj2 = [mand1[2], mand2[2], mand3[2], mand4[2], mand5[2]]
+    adj3 = [mand1[3], mand2[3], mand3[3], mand4[3], mand5[3]]
+    adj4 = [mand1[4], mand2[4], mand3[4], mand4[4], mand5[4]]
+    adj5 = [mand1[5], mand2[5], mand3[5], mand4[5], mand5[5]]
+
+    adj0.append(adj0[0])
+    adj1.append(adj1[0])
+    adj2.append(adj2[0])
+    adj3.append(adj3[0])
+    adj4.append(adj4[0])
+    adj5.append(adj5[0])
+
+    instruments = ["Mand1", "Mand2", "Mand3", "Mand4", "Mand5"]
+
+    plt.figure(figsize=(10, 6))
+    plt.subplot(polar=True)
+
+    theta = np.linspace(0, 2 * np.pi, len(mand1))
+
+    lines, labels = plt.thetagrids(range(0, 360, int(360 / len(instruments))), (instruments))
+    plt.plot(theta, adj0)
+    # plt.fill(theta, actual, 'b', alpha=0.1)
+    plt.plot(theta, adj1)
+    plt.plot(theta, adj2)
+    plt.plot(theta, adj3)
+    plt.plot(theta, adj4)
+    plt.plot(theta, adj5)
+
+    plt.legend(labels=("Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"), loc=1)
+    # plt.title("")
+    plt.show()
+
+
+def feature_correlation(data):
+
+    mand1 = data.iloc[:, 4:10]
+    mand2 = data.iloc[:, 12:18]
+    mand3 = data.iloc[:, 20:26]
+    mand4 = data.iloc[:, 28:34]
+    mand5 = data.iloc[:, 36:42]
+
+    mand1.columns = ["Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"]
+    mand2.columns = ["Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"]
+    mand3.columns = ["Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"]
+    mand4.columns = ["Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"]
+    mand5.columns = ["Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"]
+
+    features = pd.concat([mand1, mand2, mand3, mand4, mand5])
+
+    from scipy.stats import pearsonr
+
+    def corrfunc(x, y, ax=None, **kws):
+        """Plot the correlation coefficient in the top left hand corner of a plot."""
+        r, _ = pearsonr(x, y)
+        ax = ax or plt.gca()
+        # Unicode for lowercase rho (ρ)
+        rho = '\u03C1'
+        ax.annotate(f'{rho} = {r:.2f}', xy=(.1, .9), xycoords=ax.transAxes)
+
+    def corrdot(*args, **kwargs):
+        corr_r = args[0].corr(args[1], 'pearson')
+        corr_text = f"{corr_r:2.2f}".replace("0.", ".")
+        ax = plt.gca()
+        ax.set_axis_off()
+        marker_size = abs(corr_r) * 10000
+        ax.scatter([.5], [.5], marker_size, [corr_r], alpha=0.6, cmap="Blues",
+                   vmin=-1, vmax=1, transform=ax.transAxes)
+        font_size = abs(corr_r) * 40 + 5
+        ax.annotate(corr_text, [.5, .5, ], xycoords="axes fraction",
+                    ha='center', va='center', fontsize=font_size)
+
+        # g = sns.pairplot(stocks,palette=["Blues_d"])
+
+    g = sns.PairGrid(features, aspect=1.4, diag_sharey=False)
+    g.map_lower(corrfunc)
+    # g.map_lower(sns.regplot, lowess=True, ci=False, line_kws={'color': 'Black', 'linewidth': 1})
+    g.map_diag(sns.distplot, kde_kws={'color': 'Black', 'linewidth': 1})
+    g.map_upper(corrdot)
+    plt.show()
 
 
 def plot_comparison(data, start, end, instrument1, instrument2, save_name):
@@ -263,6 +395,7 @@ def plot_comparison(data, start, end, instrument1, instrument2, save_name):
     # plt.savefig(f'../figures/{save_name}.pdf', bbox_inches='tight')
     plt.show()
 
+
 def comparison_analysis(data):
 
     # data = data[data['Language'] == 'Italian']
@@ -271,8 +404,8 @@ def comparison_analysis(data):
     plot_comparison(data, 50, 56, 'CA-STD', 'Pandini', 'comparison2')
     plot_comparison(data, 56, 62, 'WWDF3', 'CA-STD', 'comparison3')
 
-
     print()
+
 
 if __name__ == '__main__':
 
@@ -283,6 +416,8 @@ if __name__ == '__main__':
     audience_analysis(data)
     data = answers_analysis(data, std_min=1)
     single_analysis(data)
+    instrument_fingerprint(data)
+    feature_correlation(data)
     comparison_analysis(data)
 
     print()

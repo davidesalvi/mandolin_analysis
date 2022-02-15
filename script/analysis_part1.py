@@ -98,3 +98,5 @@ if __name__ == '__main__':
     data = prepare_data(csv_path)
     plot_adjectives_couples(data)
     plot_sound_characteristics(data)
+
+    print()
