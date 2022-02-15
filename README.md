@@ -32,8 +32,8 @@ With this test we want to determine whether the differences in the building refl
 15 professional mandolin players were involved. They were asked to express which are the most meaningful adjectives to describe the sound of a mandolin.
 
 FIGURES TO DO:
-- histogram with responses on adjective couples
-- opinions on most relevant aspects in a mandolin
+- [x] histogram with responses on adjective couples
+- [ ] opinions on most relevant aspects in a mandolin
 
 
 ##### ANALYSIS 2
@@ -43,10 +43,11 @@ Then 3 of these instruments are compared in pairs.
 Information on the background of the respondents is available.
 
 FIGURES TO DO:
-- boxplot/violin plot on the features of each violin
-- comparison of the mandolins
-- matrix plot (correlation between the features)
-- correlation between answers and musical background of the respondents
-- information on the audience
-- others (line plots?)
+- [ ] boxplot/violin plot on the features of each violin
+- [ ] feature "fingerprint" of the instruments
+- [ ] comparison of the mandolins
+- [ ] matrix plot (correlation between the features)
+- [ ] correlation between answers and musical background of the respondents
+- [ ] information on the audience
+- [ ] others (line plots?)
 
