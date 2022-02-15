@@ -108,6 +108,25 @@ def audience_analysis(data):
     plt.show()
 
 
+def answers_analysis(data, std_min=0):
+
+    data_part = data.iloc[:, 4:43]
+    # mean_val = np.mean(data2, axis=1)
+    std_val = np.std(data_part, axis=1)
+
+    if std_min:
+        data = data.loc[std_val > std_min, :]
+
+    plt.figure(figsize=(6, 3.5))
+    plt.plot(std_val)
+    plt.hlines(std_min, -5, len(std_val)+5, colors='r', linestyles='dashed')
+    plt.xlim([-5, len(std_val)+5])
+    plt.ylabel(r'$\mathrm{STD\;of\;the\;answers}$')
+    plt.show()
+
+    return data
+
+
 def plot_single_instrument_boxplot(data, start, end, title, save_name):
 
     font_size = 12
@@ -121,8 +140,8 @@ def plot_single_instrument_boxplot(data, start, end, title, save_name):
 
     sns.set_theme(style="whitegrid")
     if end:
-        # ax = sns.boxplot(data=data.iloc[:, start:end])
-        ax = sns.violinplot(data=data.iloc[:, start:end])
+        ax = sns.boxplot(data=data.iloc[:, start:end])
+        # ax = sns.violinplot(data=data.iloc[:, start:end])
         ax.set_xticks(np.arange(len(labels_bottom)))
         ax.set_xticklabels(labels_bottom, fontdict={'fontsize': font_size})
 
@@ -130,14 +149,14 @@ def plot_single_instrument_boxplot(data, start, end, title, save_name):
         secax.set_xticks(np.arange(len(labels_top)))
         secax.set_xticklabels(labels_top, fontdict={'fontsize': font_size})
     else:
-        # ax = sns.boxplot(data=data.iloc[:, start])
-        ax = sns.violinplot(data=data.iloc[:, start])
+        ax = sns.boxplot(data=data.iloc[:, start])
+        # ax = sns.violinplot(data=data.iloc[:, start])
         ax.set_xticks(np.arange(len(labels_comparison)))
         ax.set_xticklabels(labels_comparison, fontdict={'fontsize': font_size})
 
     plt.title('$\mathrm{' + title.replace(" ", "\;") + '}$', fontsize= font_size+2, y=1.13)
 
-    # plt.savefig(f'figures/{save_name}_violin.pdf', bbox_inches='tight')
+    # plt.savefig(f'../figures/{save_name}_violin.pdf', bbox_inches='tight')
     plt.show()
 
 
@@ -173,7 +192,7 @@ def plot_single_instrument_errorbar(data, start, end, title, save_name):
 
     plt.title('$\mathrm{' + title.replace(" ", "\;") + '}$', fontsize= font_size+2, y=1.13)
 
-    # plt.savefig(f'figures/{save_name}_violin.pdf', bbox_inches='tight')
+    # plt.savefig(f'../figures/{save_name}_violin.pdf', bbox_inches='tight')
     plt.show()
 
 
@@ -190,7 +209,6 @@ def plot_single_instrument_errorbar(data, start, end, title, save_name):
     #
     #
     # f_statistics, p_values = f_regression(X_val, y_val)
-
 
 
 def single_analysis(data):
@@ -242,7 +260,7 @@ def plot_comparison(data, start, end, instrument1, instrument2, save_name):
     plt.title('$\mathrm{' + instrument1 + ' - ' + instrument2 + '}$', fontsize=font_size + 4)
     plt.legend(mandolins_legend, handles=patches, bbox_to_anchor=(1.01, 0.5), loc='center left', fontsize=font_size)
 
-    # plt.savefig(f'figures/{save_name}.pdf', bbox_inches='tight')
+    # plt.savefig(f'../figures/{save_name}.pdf', bbox_inches='tight')
     plt.show()
 
 def comparison_analysis(data):
@@ -258,11 +276,12 @@ def comparison_analysis(data):
 
 if __name__ == '__main__':
 
-    csv_path = 'data/part2_109.csv'
+    csv_path = '../data/part2_109.csv'
 
-    data = prepare_data(csv_path, std_min=1)
+    data = prepare_data(csv_path, std_min=0)
 
     audience_analysis(data)
+    data = answers_analysis(data, std_min=1)
     single_analysis(data)
     comparison_analysis(data)
 

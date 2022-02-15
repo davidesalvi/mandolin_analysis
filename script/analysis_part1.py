@@ -63,7 +63,7 @@ def plot_adjectives_couples(data):
     b.set_yticklabels(np.array(num_occurrences.iloc[:,0]), size=16)
     ax.set(xlabel=None, ylabel=None)
 
-    plt.savefig(f'figures/adjective_couples.pdf', bbox_inches='tight')
+    # plt.savefig(f'../figures/adjective_couples.pdf', bbox_inches='tight')
 
     plt.show()
 
@@ -82,8 +82,9 @@ def plot_sound_characteristics(data):
     stdev = np.std(charact, axis=0)
 
     plt.figure(figsize=(13, 5))
-    plt.errorbar(np.arange(10), mean, stdev)
-    plt.xticks(np.arange(10), charact_names)
+    # plt.errorbar(np.arange(10), mean, stdev)
+    sns.pointplot(data=charact, join=False, ci=90, capsize=.2)
+    # plt.xticks(np.arange(10), charact_names)
     plt.yticks(np.arange(7))
     plt.ylim(0.5, 6.5)
 
@@ -92,7 +93,7 @@ def plot_sound_characteristics(data):
 
 if __name__ == '__main__':
 
-    csv_path = 'data/part1_15.csv'
+    csv_path = '../data/part1_15.csv'
 
     data = prepare_data(csv_path)
     plot_adjectives_couples(data)

@@ -33,7 +33,7 @@ With this test we want to determine whether the differences in the building refl
 
 FIGURES TO DO:
 - [x] histogram with responses on adjective couples
-- [ ] opinions on most relevant aspects in a mandolin
+- [x] opinions on most relevant aspects in a mandolin
 
 
 ##### ANALYSIS 2
@@ -41,13 +41,13 @@ FIGURES TO DO:
 5 mandolins are heard in a blind listening test and are evaluated on 5 different acoustical aspects.
 Then 3 of these instruments are compared in pairs.
 Information on the background of the respondents is available.
-
+~~~~
 FIGURES TO DO:
-- [ ] boxplot/violin plot on the features of each violin
+- [x] information on the audience
+- [x] boxplot/violin plot on the features of each violin
 - [ ] feature "fingerprint" of the instruments
 - [ ] comparison of the mandolins
 - [ ] matrix plot (correlation between the features)
 - [ ] correlation between answers and musical background of the respondents
-- [ ] information on the audience
 - [ ] others (line plots?)
 
