@@ -313,6 +313,15 @@ def instrument_fingerprint(data):
     plt.show()
 
 
+    features_grid = np.array([mand1, mand2, mand3, mand4, mand5])
+    plt.figure(figsize=(10, 7))
+    plt.imshow(features_grid.T, cmap='RdBu')
+    plt.colorbar()
+    plt.xticks(range(5), ['M1', 'M2', 'M3', 'M4', 'M5'], size=18)
+    plt.yticks(range(6), ['Dull', 'Cold', 'Opaque', 'Sharp', 'Homogeneous', 'Closed'], size=18)
+    plt.show()
+
+
 def feature_correlation(data):
 
     mand1 = data.iloc[:, 4:10]

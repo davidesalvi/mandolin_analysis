@@ -54,16 +54,16 @@ def plot_adjectives_couples(data):
     y_ticks = np.array([r'$\mathrm{0}$', r'$\mathrm{1}$', r'$\mathrm{2}$', r'$\mathrm{3}$', r'$\mathrm{4}$',
                         r'$\mathrm{5}$', r'$\mathrm{6}$', r'$\mathrm{7}$', r'$\mathrm{8}$', ])
 
-    f, ax = plt.subplots(figsize=(12, 6), dpi=120)
+    f, ax = plt.subplots(figsize=(9, 6), dpi=120)
     sns.set_theme(style="whitegrid")
     clrs = ['#4e76a5' if (x < num_occurrences[0][4]) else '#d1564e' for x in num_occurrences[0]]
     b = sns.barplot(x=0, y="index", data=num_occurrences,
                 label="Total", palette=clrs)#color="b")
-    b.set_xticklabels(y_ticks, size=18)
+    b.set_xticklabels(y_ticks, size=22)
     b.set_yticklabels(np.array(num_occurrences.iloc[:,0]), size=16)
     ax.set(xlabel=None, ylabel=None)
 
-    # plt.savefig(f'../figures/adjective_couples.pdf', bbox_inches='tight')
+    plt.savefig(f'../figures/adjective_couples.pdf', bbox_inches='tight')
 
     plt.show()
 
