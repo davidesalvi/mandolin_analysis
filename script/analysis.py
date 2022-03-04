@@ -330,6 +330,7 @@ def feature_correlation(data):
     features = pd.concat([mand1, mand2, mand3, mand4, mand5])
 
     from scipy.stats import pearsonr
+    import statsmodels
 
     def corrfunc(x, y, ax=None, **kws):
         """Plot the correlation coefficient in the top left hand corner of a plot."""
@@ -384,7 +385,7 @@ def plot_comparison(data, start, end, instrument1, instrument2, save_name):
     plt.bar(y_pos, performance, align='center', color=(color_vec * 6), width=.95, zorder=2)
     # plt.xticks([2, 6, 10, 14, 18, 22], ['Brilliant', 'Round', 'Warm', 'Soft', 'Sustain', 'Overall \n preference'],
     plt.xticks([2, 6, 10, 14, 18, 22], [r'$\mathrm{Brilliant}$', r'$\mathrm{Round}$', r'$\mathrm{Warm}$',
-                r'$\mathrm{Soft}$', r'$\mathrm{Sustain}$', r'$\mathrm{Overall}\\ \mathrm{performance}$'],
+                r'$\mathrm{Soft}$', r'$\mathrm{Sustain}$', r'$\mathrm{Overall\;performance}$'],
                rotation=0, fontsize=font_size+2)
 
     plt.ylim(0, 105)
