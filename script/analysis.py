@@ -5,9 +5,9 @@ import seaborn as sns
 import os
 from matplotlib.patches import Patch
 
-# # make plots using LaTeX font
-# import matplotlib as mpl
-# mpl.rcParams['text.usetex'] = True
+# make plots using LaTeX font
+import matplotlib as mpl
+mpl.rcParams['text.usetex'] = False
 
 def prepare_data(csv_path, std_min=None):
 
@@ -316,9 +316,13 @@ def instrument_fingerprint(data):
     features_grid = np.array([mand1, mand2, mand3, mand4, mand5])
     plt.figure(figsize=(10, 7))
     plt.imshow(features_grid.T, cmap='RdBu')
-    plt.colorbar()
-    plt.xticks(range(5), ['M1', 'M2', 'M3', 'M4', 'M5'], size=18)
-    plt.yticks(range(6), ['Dull', 'Cold', 'Opaque', 'Sharp', 'Homogeneous', 'Closed'], size=18)
+    cbar = plt.colorbar()
+    cbar.set_label(r'$\mathrm{Average\;of\;responses}$', rotation=270, size=22, labelpad=40)
+    cbar.ax.tick_params(labelsize=20)
+    # cbar.set_label('Average of responses', rotation=270)
+
+    plt.xticks(range(5), [r'$\mathrm{M1}$', r'$\mathrm{M2}$', r'$\mathrm{M3}$', r'$\mathrm{M4}$', r'$\mathrm{M5}$'], size=22)
+    plt.yticks(range(6), [r'$\mathrm{Dull}$',r'$\mathrm{Cold}$',r'$\mathrm{Opaque}$',r'$\mathrm{Sharp}$',r'$\mathrm{Homogeneous}$',r'$\mathrm{Closed}$'], size=22)
     plt.show()
 
 
@@ -423,9 +427,9 @@ if __name__ == '__main__':
 
     data = prepare_data(csv_path, std_min=0)
 
-    audience_analysis(data)
+    # audience_analysis(data)
     data = answers_analysis(data, std_min=1)
-    single_analysis(data)
+    # single_analysis(data)
     instrument_fingerprint(data)
     feature_correlation(data)
     comparison_analysis(data)
