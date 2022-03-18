@@ -244,30 +244,56 @@ def instrument_fingerprint(data):
     mand3 = np.mean(data.iloc[:, 20:26], axis=0).to_list()
     mand4 = np.mean(data.iloc[:, 28:34], axis=0).to_list()
     mand5 = np.mean(data.iloc[:, 36:42], axis=0).to_list()
+    mand_all = np.array([mand1, mand2, mand3, mand4, mand5])
 
-    mand1.append(mand1[0])
-    mand2.append(mand2[0])
-    mand3.append(mand3[0])
-    mand4.append(mand4[0])
-    mand5.append(mand5[0])
+    mand_all = np.vstack([mand_all, mand_all[:1,:]])
+    mand_all = np.hstack([mand_all, mand_all[:,:1]])
 
-    adjectives = ["Dull", "Cold", "Opaque", "Sharp", "Homogeneous", "Closed"]
+    adjectives = [r'$\mathrm{Dull}$', r'$\mathrm{Cold}$', r'$\mathrm{Opaque}$', r'$\mathrm{Sharp}$',
+                  r'$\mathrm{Homogeneous}$', r'$\mathrm{Closed}$']
+    mandolins = [r'$\mathrm{M1}$', r'$\mathrm{M2}$', r'$\mathrm{M3}$', r'$\mathrm{M4}$', r'$\mathrm{M5}$']
 
-    plt.figure(figsize=(10, 6))
-    plt.subplot(polar=True)
+    adjectives.append(adjectives[0])
+    mandolins.append(mandolins[0])
 
-    theta = np.linspace(0, 2 * np.pi, len(mand1))
+    theta0 = np.linspace(0, 2 * np.pi, mand_all.shape[0])
+    theta1 = np.linspace(0, 2 * np.pi, mand_all.shape[1])
 
-    lines, labels = plt.thetagrids(range(0, 360, int(360 / len(adjectives))), (adjectives))
-    plt.plot(theta, mand1)
-    # plt.fill(theta, actual, 'b', alpha=0.1)
-    plt.plot(theta, mand2)
-    plt.plot(theta, mand3)
-    plt.plot(theta, mand4)
-    plt.plot(theta, mand5)
+    fig, axes = plt.subplots(ncols=2, figsize=(11, 3), dpi=200,
+                             subplot_kw=dict(polar=True))
+    fig.subplots_adjust(right=5.25)
 
-    plt.legend(labels=('Mand1', 'Mand2', 'Mand3', 'Mand4', 'Mand5'), loc=1)
-    # plt.title("")
+    for ii in range(mand_all.shape[1]):
+        axes[0].plot(theta0, np.array(mand_all[:,ii]), label=adjectives[ii])
+
+    for ii in range(mand_all.shape[0]):
+        axes[1].plot(theta1, np.array(mand_all[ii,:]), label=mandolins[ii])
+
+    axes[0].set(theta_offset=0, theta_direction=-1,
+           xticks=theta0)
+    axes[0].set_xticklabels(mandolins)
+    axes[1].set(theta_offset=0, theta_direction=-1,
+           xticks=theta1)
+    axes[1].set_xticklabels(adjectives)
+
+    angle = np.deg2rad(310)
+    axes[0].legend(loc="lower left",
+          bbox_to_anchor=(.85 + np.cos(angle)/2, .5 + np.sin(angle)/2))
+    axes[1].legend(loc="lower left",
+          bbox_to_anchor=(-1 + np.cos(angle)/2, .57 + np.sin(angle)/2))
+
+    # axes[0].set_title('Instruments vs. Features', y=1.2)
+    # axes[1].set_title('Features vs. Instruments', y=1.2)
+
+    for idx, label in enumerate(axes[1].get_xticklabels()):
+        if idx in [2,3,4]:
+            label.set_horizontalalignment('right')
+        else:
+            label.set_horizontalalignment('left')
+
+    plt.plot([-.5, -.5], [1.2, -1], color='black', lw=1, transform=axes[0].transAxes,
+             clip_on=False)  # vertical line
+
     plt.show()
 
     # ===============================================

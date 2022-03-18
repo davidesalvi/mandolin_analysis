@@ -24,10 +24,10 @@ def plot_adjectives_couples(data):
 
     adj = data.iloc[:,0]
     adj_list = adj.to_list()
-    list = [l.split(',') for l in ','.join(adj_list).split('|')][0]
+    ad_list = [l.split(',') for l in ','.join(adj_list).split('|')][0]
 
     adj_list = []
-    for elem in list:
+    for elem in ad_list:
         j = elem.replace(' ', '')
         adj_list.append(j)
 
