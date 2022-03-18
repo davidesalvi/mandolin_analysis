@@ -456,8 +456,8 @@ if __name__ == '__main__':
     # audience_analysis(data)
     data = answers_analysis(data, std_min=1)
     # single_analysis(data)
-    instrument_fingerprint(data)
-    feature_correlation(data)
+    # instrument_fingerprint(data)
+    # feature_correlation(data)
     comparison_analysis(data)
 
     print()
