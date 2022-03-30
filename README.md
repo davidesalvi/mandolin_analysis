@@ -45,9 +45,9 @@ Information on the background of the respondents is available.
 FIGURES TO DO:
 - [x] information on the audience
 - [x] boxplot/violin plot on the features of each violin
-- [ ] feature "fingerprint" of the instruments
+- [x] feature "fingerprint" of the instruments
 - [ ] comparison of the mandolins
-- [ ] matrix plot (correlation between the features)
+- [/] matrix plot (correlation between the features)
 - [ ] correlation between answers and musical background of the respondents
 - [ ] others (line plots?)
 
