@@ -9,6 +9,7 @@ from matplotlib.patches import Patch
 import matplotlib as mpl
 mpl.rcParams['text.usetex'] = False
 
+
 def prepare_data(csv_path, std_min=None):
 
     data = pd.read_csv(csv_path)
@@ -160,6 +161,13 @@ def plot_single_instrument_boxplot(data, start, end, title, save_name):
 
     plt.title('$\mathrm{' + title.replace(" ", "\;") + '}$', fontsize= font_size+2, y=1.13)
 
+    print(title)
+    if end:
+        print(data.iloc[:, start:end].mean())
+    else:
+        print(data.iloc[:, start].mean())
+    print()
+
     # plt.savefig(f'../figures/{save_name}_violin.pdf', bbox_inches='tight')
     plt.show()
 
@@ -227,7 +235,7 @@ def single_analysis(data):
     plot_single_instrument_boxplot(data, 20, 26, 'Mandolin 3 - WWDF3', 'wwdf3')
     plot_single_instrument_boxplot(data, 28, 34, 'Mandolin 4 - CA-STD', 'castd')
     plot_single_instrument_boxplot(data, 36, 42, 'Mandolin 5 - Pandini', 'pandini')
-    plot_single_instrument_boxplot(data, [11, 19, 27, 35, 43], None, 'Overall Comparison', 'overall_comp')
+    # plot_single_instrument_boxplot(data, [11, 19, 27, 35, 43], None, 'Overall Comparison', 'overall_comp')
 
     # plot_single_instrument_errorbar(data, 4, 11, 'Mandolin 1 - WWDF2', 'wwdf2')
     # plot_single_instrument_errorbar(data, 12, 19, 'Mandolin 2 - WWDF1', 'wwdf1')
@@ -449,15 +457,17 @@ def comparison_analysis(data):
 
 if __name__ == '__main__':
 
-    csv_path = '../data/part2_109.csv'
+    csv_path = '../data/part2_111.csv'
 
     data = prepare_data(csv_path, std_min=0)
-
     # audience_analysis(data)
     data = answers_analysis(data, std_min=1)
-    # single_analysis(data)
+
+    # square_plot(data)
+
+    single_analysis(data)
     # instrument_fingerprint(data)
-    # feature_correlation(data)
+    feature_correlation(data)
     comparison_analysis(data)
 
     print()

@@ -83,7 +83,7 @@ squarify.plot(sizes=sizes, label=labels, alpha=0.7, color=colors, bar_kwargs=dic
 # plt.title("Audience Music level")
 plt.yticks([],[])
 plt.xticks([],[])
-plt.savefig('../figures/square_plot.pdf')
+# plt.savefig('../figures/square_plot.pdf')
 plt.show()
 
 # STD OF THE ANSWERS
